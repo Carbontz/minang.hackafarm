@@ -19,5 +19,20 @@
     <string name="daftar">Daftar</string>
     <string name="login">Login</string>
     <string name="selamat_datang">Selamat Datang,</string>
+
+    <!-- monitoring -->
     <string name="check">Check!</string>
+    <string-array name="ListLadang">
+        <item>Sawah</item>
+        <item>Tomat</item>
+        <item>Cabe</item>
+        <item>Ubi Jalar</item>
+    </string-array>
+    <string-array name="Urutan">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+    </string-array>
 </resources>
