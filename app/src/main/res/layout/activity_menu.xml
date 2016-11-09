@@ -11,4 +11,38 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="reza.minang.hackafarm.Menu_Activity">
 
+    <TextView
+        android:text="@string/selamat_datang"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:id="@+id/tvWelcome"/>
+
+    <TextView
+        android:text="@string/nama"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/tvWelcome"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/tvUser"/>
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="58dp"
+        android:id="@+id/spListLadang"
+        android:layout_below="@+id/tvWelcome"
+        android:layout_centerHorizontal="true"/>
+
+    <Button
+        android:text="@string/check"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="33dp"
+        android:id="@+id/btnCheck"
+        android:layout_below="@+id/spListLadang"
+        android:layout_centerHorizontal="true"/>
 </RelativeLayout>
