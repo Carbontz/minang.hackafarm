@@ -7,6 +7,7 @@ public class User {
 
     public String username;
     public String email;
+    public String Password;
 
     public User() {
         // Default constructor required for calls to DataSnapshot.getValue(User.class)

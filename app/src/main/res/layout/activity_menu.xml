@@ -26,8 +26,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/tvWelcome"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/tvUser"/>
+        android:id="@+id/tvUser"
+        android:gravity="right"
+        android:layout_alignParentEnd="true"/>
 
     <LinearLayout
         android:orientation="horizontal"
@@ -62,6 +63,14 @@
         android:layout_height="wrap_content"
         android:id="@+id/btnCheck"
         android:layout_marginTop="125dp"
+        android:layout_alignParentStart="true"/>
+
+    <Button
+        android:text="@string/LogOut"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnLogOut"
+        android:layout_below="@+id/btnCheck"
         android:layout_alignParentStart="true"/>
 
 </RelativeLayout>

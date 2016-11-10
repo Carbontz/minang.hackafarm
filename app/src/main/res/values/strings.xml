@@ -22,6 +22,7 @@
 
     <!-- monitoring -->
     <string name="check">Check!</string>
+    <string name="LogOut">Keluar</string>
     <string-array name="ListLadang">
         <item>Sawah</item>
         <item>Tomat</item>
