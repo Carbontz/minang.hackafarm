@@ -14,7 +14,7 @@ import com.jjoe64.graphview.GraphView;
 
 public class Ladang_Activity extends AppCompatActivity {
 
-    TextView tvKelembabanUdara,tvKelembabanTanah ,tvHujan,tvStatusHujan,tvKondisiAir,tvStatusAir,tvFoto,tvWaktuFoto;
+    TextView tvLadang,tvLadangKe,tvKelembabanUdara,tvKelembabanTanah ,tvHujan,tvStatusHujan,tvKondisiAir,tvStatusAir,tvFoto,tvWaktuFoto;
     ImageView ivLadang;
     Button btnFoto;
     GraphView graphKelembabanUdara,graphKelembabanTanah;
@@ -37,6 +37,8 @@ public class Ladang_Activity extends AppCompatActivity {
         tvStatusAir       = (TextView) findViewById(R.id.tvStatusAir);
         tvFoto            = (TextView) findViewById(R.id.tvFoto);
         tvWaktuFoto       = (TextView) findViewById(R.id.tvWaktuFoto);
+        tvLadang          = (TextView) findViewById(R.id.tvLadang);
+        tvLadangKe        = (TextView) findViewById(R.id.tvLadangKe);
         ivLadang          = (ImageView) findViewById(R.id.ivLadang);
         btnFoto             = (Button) findViewById(R.id.btnFoto);
         graphKelembabanUdara = (GraphView) findViewById(R.id.graphKelembabanUdara);
@@ -58,6 +60,12 @@ public class Ladang_Activity extends AppCompatActivity {
                 }
             }
         };
+
+        //ambil nilai dari activity sebelumnya dan pasang di atas
+        Bundle bundle = getIntent().getExtras();
+        String ladang = bundle.getString("ladang");
+        String urutan = bundle.getString("urutan");
+        tvLadang.setText("Ladang "+ladang);
 
 
     }
