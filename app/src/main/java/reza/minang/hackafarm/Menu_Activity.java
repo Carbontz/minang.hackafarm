@@ -19,6 +19,7 @@ public class Menu_Activity extends AppCompatActivity {
     TextView tvSelamatDatang, tvUser;
     Spinner spListLadang,spUrutanLadang;
     Button btnCheck,btnLogout;
+    Bundle bundle;
     FirebaseAuth mAuth;
     FirebaseAuth.AuthStateListener mAuthListener;
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -35,20 +36,9 @@ public class Menu_Activity extends AppCompatActivity {
         spUrutanLadang = (Spinner) findViewById(R.id.spUrutanLadang);
         btnCheck = (Button) findViewById(R.id.btnCheck);
         btnLogout = (Button) findViewById(R.id.btnLogOut);
+        bundle = new Bundle();
 
-        //info user sekarang
-        if (user != null) {
-            // Name, email address, and profile photo Url
-            String name = user.getEmail();
-            tvUser.setText(name);
-
-            // The user's ID, unique to the Firebase project. Do NOT use this value to
-            // authenticate with your backend server, if you have one. Use
-            // FirebaseUser.getToken() instead.
-            String uid = user.getUid();
-        }
-
-        //firebase
+        //session code firebase untuk user part 1
         mAuth = FirebaseAuth.getInstance();
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -64,12 +54,32 @@ public class Menu_Activity extends AppCompatActivity {
             }
         };
 
+        //info user sekarang
+        if (user != null) {
+            // Name, email address, and profile photo Url
+            String name = user.getEmail();
+            tvUser.setText(name);
+
+            // The user's ID, unique to the Firebase project. Do NOT use this value to
+            // authenticate with your backend server, if you have one. Use
+            // FirebaseUser.getToken() instead.
+            String uid = user.getUid();
+        }
+
+
+
         btnCheck.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String jenisLadang = spListLadang.getSelectedItem().toString();
                 String posisiLadang = spUrutanLadang.getSelectedItem().toString();
-                startActivity(new Intent(getApplicationContext(), Ladang_Activity.class));
+                Intent pindah = new Intent(getApplicationContext(),Ladang_Activity.class);
+
+                //transfer nilai antar activity
+                bundle.putString("ladang",jenisLadang);
+                bundle.putString("urutan",posisiLadang);
+                pindah.putExtras(bundle);
+                startActivity(pindah);
             }
         });
 
@@ -83,6 +93,7 @@ public class Menu_Activity extends AppCompatActivity {
         });
     }
 
+    //session code untuk firebase user part 2
     @Override
     protected void onStart() {
         super.onStart();
