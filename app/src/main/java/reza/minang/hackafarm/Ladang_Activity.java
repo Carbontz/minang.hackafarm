@@ -10,7 +10,11 @@ import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 import com.jjoe64.graphview.GraphView;
+import com.jjoe64.graphview.series.DataPoint;
+import com.jjoe64.graphview.series.LineGraphSeries;
 
 public class Ladang_Activity extends AppCompatActivity {
 
@@ -23,6 +27,7 @@ public class Ladang_Activity extends AppCompatActivity {
     //firebase
     FirebaseAuth mAuth;
     FirebaseAuth.AuthStateListener mAuthListener;
+    StorageReference mStorageRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,8 +48,20 @@ public class Ladang_Activity extends AppCompatActivity {
         btnFoto             = (Button) findViewById(R.id.btnFoto);
         graphKelembabanUdara = (GraphView) findViewById(R.id.graphKelembabanUdara);
         graphKelembabanTanah = (GraphView) findViewById(R.id.graphKelembabanTanah);
-        
-        //firebase code
+
+        //contoh
+        LineGraphSeries<DataPoint> series = new LineGraphSeries<>(new DataPoint[] {
+                new DataPoint(0, 1),
+                new DataPoint(1, 5),
+                new DataPoint(2, 3),
+                new DataPoint(3, 2),
+                new DataPoint(4, 6)
+        });
+        graphKelembabanUdara.addSeries(series);
+
+        //storage foto firebase
+        mStorageRef          = FirebaseStorage.getInstance().getReference();
+
         //session code firebase untuk user part 1
         mAuth = FirebaseAuth.getInstance();
         mAuthListener = new FirebaseAuth.AuthStateListener() {

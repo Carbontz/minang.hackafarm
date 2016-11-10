@@ -24,7 +24,7 @@
     <string name="check">Check!</string>
     <string name="LogOut">Keluar</string>
     <string-array name="ListLadang">
-        <item>Sawah</item>
+        <item>Padi</item>
         <item>Tomat</item>
         <item>Cabe</item>
         <item>Ubi Jalar</item>
