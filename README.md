@@ -18,5 +18,13 @@ Fitur dari aplikasi ini yaitu :
   - Login and Register Account petani
   - Menampilkan data dari alat dalam bentuk grafik,angka,dan foto (read task to do)
   
+ Arduino Fitur :
+  - Sensor PING (untuk menguji ketinggian air)
+  - Sensor RainDrop (untuk menguji ada hujan atau tidak)
+  - Sensor DHT22 (Untuk kelembaban udara)
+  - Sensor Soil Moisture (untuk menguji kelembaban tanah)
+  - Module GSM Shield
+ 
+ 
 Task to do :
   - Menghubungkan komunikasi data antara aplikasi dengan server (back-end developing)
