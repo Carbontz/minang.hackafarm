@@ -16,4 +16,7 @@ Software yang digunakan :
 
 Fitur dari aplikasi ini yaitu :
   - Login and Register Account petani
-  - Menampilkan data dari alat dalam bentuk grafik,angka,dan foto
+  - Menampilkan data dari alat dalam bentuk grafik,angka,dan foto (read task to do)
+  
+Task to do :
+  - Menghubungkan komunikasi data antara aplikasi dengan server (back-end developing)
