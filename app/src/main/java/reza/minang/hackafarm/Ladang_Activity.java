@@ -58,6 +58,14 @@ public class Ladang_Activity extends AppCompatActivity {
                 new DataPoint(4, 6)
         });
         graphKelembabanUdara.addSeries(series);
+        LineGraphSeries<DataPoint> series2 = new LineGraphSeries<>(new DataPoint[] {
+                new DataPoint(0, 19),
+                new DataPoint(1, 7),
+                new DataPoint(2, 13),
+                new DataPoint(3, 10),
+                new DataPoint(4, 26)
+        });
+        graphKelembabanTanah.addSeries(series2);
 
         //storage foto firebase
         mStorageRef          = FirebaseStorage.getInstance().getReference();
@@ -83,8 +91,7 @@ public class Ladang_Activity extends AppCompatActivity {
         String ladang = bundle.getString("ladang");
         String urutan = bundle.getString("urutan");
         tvLadang.setText("Ladang "+ladang);
-
-
+        tvLadangKe.setText("ke "+urutan);
     }
 
 }

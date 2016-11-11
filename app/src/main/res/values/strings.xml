@@ -1,7 +1,7 @@
 <resources>
-    <string name="app_name">Minang Hackafarm</string>
+    <string name="app_name">Rangkiang</string>
     <string name="Nama_Loading">Aplikasi?</string>
-    <string name="title_activity_login">Minang Hackafarm</string>
+    <string name="title_activity_login">Rangkiang</string>
 
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
@@ -23,6 +23,7 @@
     <!-- monitoring -->
     <string name="check">Check!</string>
     <string name="LogOut">Keluar</string>
+    <string name="Ladang">Ladang</string>
     <string-array name="ListLadang">
         <item>Padi</item>
         <item>Tomat</item>

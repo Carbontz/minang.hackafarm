@@ -33,7 +33,7 @@ public class Login_Activity extends BaseActivity implements View.OnClickListener
         setContentView(R.layout.activity_login);
 
         tvEmail = (TextView) findViewById(R.id.tvEmail);
-        tvPassword = (TextView) findViewById(R.id.etPassword);
+        tvPassword = (TextView) findViewById(R.id.tvPassword);
         etEmail = (EditText) findViewById(R.id.etEmail);
         etPassword = (EditText) findViewById(R.id.etPassword);
         btnLogin = (Button) findViewById(R.id.btnLogin);

@@ -25,14 +25,19 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/tvLadang"
-            />
+            android:textSize="30sp"
+            android:textColor="@android:color/background_dark"
+            android:textStyle="bold"/>
 
         <TextView
             android:text="Ladang Ke ?"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/tvLadangKe"
-            />
+            android:textColor="@android:color/background_dark"
+            android:textStyle="bold"
+            android:textSize="30sp"
+            android:layout_marginLeft="10dp"/>
     </LinearLayout>
 
     <ScrollView
@@ -48,7 +53,8 @@
                 android:text="Kelembaban Udara"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/tvKelembabanUdara"/>
+                android:id="@+id/tvKelembabanUdara"
+                android:layout_marginTop="10dp"/>
 
             <com.jjoe64.graphview.GraphView
                 android:layout_width="match_parent"
@@ -70,14 +76,16 @@
 
             <TableLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:padding="10dp"
+                android:layout_margin="10dp">
 
                 <TableRow
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
                     <TextView
-                        android:text="tvHujan"
+                        android:text="Hujan?"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/tvHujan"/>
