@@ -1,8 +1,8 @@
 package reza.minang.hackafarm;
 
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -10,8 +10,6 @@ import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
@@ -27,7 +25,6 @@ public class Ladang_Activity extends AppCompatActivity {
     //firebase
     FirebaseAuth mAuth;
     FirebaseAuth.AuthStateListener mAuthListener;
-    StorageReference mStorageRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,9 +63,6 @@ public class Ladang_Activity extends AppCompatActivity {
                 new DataPoint(4, 26)
         });
         graphKelembabanTanah.addSeries(series2);
-
-        //storage foto firebase
-        mStorageRef          = FirebaseStorage.getInstance().getReference();
 
         //session code firebase untuk user part 1
         mAuth = FirebaseAuth.getInstance();
