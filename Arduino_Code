@@ -1,0 +1,159 @@
+#include <Wire.h>  // Comes with Arduino IDE
+
+// raindrop
+int nRainDigitalIn = 3;
+boolean bIsRaining = false;
+String strRaining;
+
+//ping
+#include <NewPing.h>
+#define TRIGGER_PIN  13 // Arduino pin tied to trigger pin on the ultrasonic sensor.
+#define ECHO_PIN     12  // Arduino pin tied to echo pin on the ultrasonic sensor.
+NewPing sonar(TRIGGER_PIN, ECHO_PIN); 
+
+//soil
+int sensorPin = A0;  // pin sensor
+int powerPin = 6;    // untuk pengganti VCC
+int i=1;
+
+//DHT
+#include "DHT.h"
+#define DHTPIN 2  // DHT_________________________________________________
+#define DHTTYPE DHT22   // DHT 22  (AM2302), AM2321
+DHT dht(DHTPIN, DHTTYPE);
+
+//sms
+//ERFINDER CODE
+#include <SoftwareSerial.h>
+SoftwareSerial mySerial(9, 10);
+
+void setup() {
+  Serial.begin(9600);  // Used to type in characters
+  delay(1000);  
+  //soil
+  pinMode(powerPin, OUTPUT);
+  // default bernilai LOW
+  digitalWrite(powerPin, LOW);
+  //gsm
+  mySerial.begin(9600);   // Setting the baud rate of GSM Module  
+}
+
+// raindrop val
+void rainDrop() {
+  bIsRaining = !(digitalRead(nRainDigitalIn));  
+  if(bIsRaining){
+    strRaining = "YES";
+  }
+  else{
+    strRaining = "NO";
+  }
+  Serial.print("Raining?: ");
+  Serial.println(strRaining);  
+}
+
+// ping________-
+void pingg() {
+  // Wait 50ms between pings (about 20 pings/sec). 29ms should be the shortest delay between pings.
+  unsigned int uS = sonar.ping(); // Send ping, get ping time in microseconds (uS).
+  // Serial.print("Ping: ");
+  int temp = uS / US_ROUNDTRIP_CM;
+  Serial.print("Jarak : ");
+  Serial.println(temp);
+  //Serial.println("cm"); //If you would like ping in inches, remove "US_ROUNDTRIP_CM" and the backslash, don't forget to rename "cm" to "inches"       
+  delay(200);
+}
+
+//SOIL________________
+void soil() {
+  Serial.print("Nilai kelembaban 30 menit ke  " );
+  Serial.print(i); Serial.print(": ");
+  Serial.println(bacaSensor());
+  i++;
+  delay(200);
+}
+
+void dhtSensor() {
+  // Reading temperature or humidity takes about 250 milliseconds!
+  // Sensor readings may also be up to 2 seconds 'old' (its a very slow sensor)
+  float h = dht.readHumidity();
+  // Read temperature as Celsius (the default)
+  float t = dht.readTemperature();
+  // Read temperature as Fahrenheit (isFahrenheit = true)
+  float f = dht.readTemperature(true);
+  // Check if any reads failed and exit early (to try again).
+  if (isnan(h) || isnan(t) || isnan(f)) {
+    Serial.println("Failed to read from DHT sensor!");
+    return;
+  }
+  // Compute heat index in Fahrenheit (the default)
+  float hif = dht.computeHeatIndex(f, h);
+  // Compute heat index in Celsius (isFahreheit = false)
+  float hic = dht.computeHeatIndex(t, h, false);
+  Serial.print("Humidity: ");
+  Serial.print(h);
+  Serial.print(" %\t");
+  Serial.print("Temperature: ");
+  Serial.print(t);
+  Serial.print(" *C ");
+  Serial.print(f);
+  Serial.print(" *F\t");
+  Serial.print("Heat index: ");
+  Serial.print(hic);
+  Serial.print(" *C ");
+  Serial.print(hif);
+  Serial.println(" *F");
+  delay(200);
+}
+
+//PROCREDUR SOIL
+int bacaSensor() {
+  // hidupkan power
+  digitalWrite(powerPin, HIGH);
+  delay(100);// display each character to the LCD
+
+  // baca nilai analog dari sensor
+  int nilaiSensor = analogRead(sensorPin);
+  digitalWrite(powerPin, LOW);
+  // makin lembab maka makin tinggi nilai outputnya
+  return 1023 - nilaiSensor;
+}
+
+void modulSMS() {
+  if (Serial.available()>0)
+   switch(Serial.read())
+  {
+    case 's': { 
+      mySerial.println("AT+CMGF=1");    //Sets the GSM Module in Text Mode
+      delay(1000);  // Delay of 1000 milli seconds or 1 second
+      mySerial.println("AT+CMGS=\"+6289619905426\"\r"); // Replace x with mobile number
+      delay(1000);
+      mySerial.println("I am SMS from GSM Module");// The SMS text you want to send
+      delay(100);
+       mySerial.println((char)26);// ASCII code of CTRL+Z
+      delay(1000);
+    }
+      break;
+    case 'r': {
+      mySerial.println("AT+CNMI=2,2,0,0,0"); // AT Command to recieve a live SMS
+      delay(1000);  
+    }
+      break;
+  }
+
+ if (mySerial.available()>0)
+   Serial.write(mySerial.read());
+}
+
+void loop() {
+      // display each character to the LCD
+      //lcd.write(Serial.read());
+      rainDrop();
+      pingg();
+      soil();
+      dhtSensor();
+      bacaSensor();
+      modulSMS();
+      Serial.println("===========================================================================");
+      Serial.println();
+      delay(1000); 
+}
